@@ -1,5 +1,7 @@
 # TaskManagerApp
 
+Aplicativo de gerenciamento de tarefas. O aplicativo consome [Task manager API]()
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
 
 ## Development server
