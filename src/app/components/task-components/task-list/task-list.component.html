@@ -1,0 +1,27 @@
+<div>
+    <a routerLink="../form" routerLinkActive="active">Nova Tarefa</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Data de criação</th>
+                <th>Última alteração</th>
+                <th>Título</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let task of tasks">
+                <td>{{ task.createdAt | date:"dd/MM/yyyy" }}</td>
+                <td>{{ task.updatedAt | date:"dd/MM/yyyy" }} </td>
+                <td>{{task.title}}</td>
+                <td>{{task.status}}</td>
+                <td>
+                    <button (click)="viewTask(task.id)">view</button>
+                    <button (click)="editTask(task.id)">Edit</button>
+                    <button (click)="deleteTask(task)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

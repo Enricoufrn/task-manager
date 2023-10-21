@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="header">
+        <button (click)="logout()">Sair</button>
+    </div>
+    <div class="menu">
+        <nav>
+            <ul>
+                <li><a routerLink="my-account" routerLinkActive="active" ariaCurrentWhenActive="page">Meu dados</a></li>
+                <li><a routerLink="tasks" routerLinkActive="active" ariaCurrentWhenActive="page">Minhas Tarefas</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

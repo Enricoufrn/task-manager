@@ -1,0 +1,17 @@
+<div>
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+        <input type="hidden" name="createdAt" id="createdAt" formControlName="createdAt"
+            [value]="formatDateTime(taskForm.get('createdAt')?.value)" />
+        <input type="hidden" name="updatedAt" id="updatedAt" formControlName="updatedAt"
+            [value]="formatDateTime(taskForm.get('updatedAt')?.value)" />
+        <div>
+            <label for="title">Título</label>
+            <input type="text" name="title" id="title" formControlName="title" />
+        </div>
+        <div>
+            <label>Descrição</label>
+            <textarea name="description" id="description" formControlName="description"></textarea>
+        </div>
+        <button type="submit">Cadastrar</button>
+    </form>
+</div>
