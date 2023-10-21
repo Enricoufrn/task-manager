@@ -15,7 +15,7 @@
                 <td>{{ task.createdAt | date:"dd/MM/yyyy" }}</td>
                 <td>{{ task.updatedAt | date:"dd/MM/yyyy" }} </td>
                 <td>{{task.title}}</td>
-                <td>{{task.status}}</td>
+                <td>{{status(task.status)}}</td>
                 <td>
                     <button (click)="viewTask(task.id)">view</button>
                     <button (click)="editTask(task.id)">Edit</button>

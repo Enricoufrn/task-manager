@@ -25,5 +25,13 @@ export class TaskDetailsComponent {
     }
   }
 
-
+  archiveTask(): void {
+    const taskId = this.task?.id;
+    if (taskId != null && taskId != undefined) {
+      this.taskService.changeTaskStatus(taskId, "ARCHIVED").subscribe((task: TaskModel | null) => {
+        alert('Tarefa arquivada com sucesso!');
+        this.task = task;
+      });
+    }
+  }
 }

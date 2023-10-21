@@ -12,6 +12,12 @@
             <label>Descrição</label>
             <textarea name="description" id="description" formControlName="description"></textarea>
         </div>
+        <div *ngIf="isUpdate">
+            <label>Status</label>
+            <select name="status" id="status" formControlName="status">
+                <option *ngFor="let status of statusList" [value]="status.value">{{ status.description }}</option>
+            </select>
+        </div>
         <button type="submit">Cadastrar</button>
     </form>
 </div>

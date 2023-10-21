@@ -7,8 +7,9 @@ export interface Config {
   protocol: string,
   baseUrl: string,
   userRoute: string,
-  authRoute: string
-  tasksRoute: string
+  authRoute: string,
+  tasksRoute: string,
+  updateTaskStatusRoute: string,
 }
 
 @Injectable({

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskModel } from 'src/app/domain/TaskModel';
 import { TaskService } from 'src/app/services/task.service';
+import { getTaskStatus } from 'src/app/utils/task-utils';
 
 @Component({
   selector: 'app-task-list',
@@ -41,5 +42,9 @@ export class TaskListComponent {
     if (taskId) {
       this.router.navigate(['../view', taskId], { relativeTo: this.route });
     }
+  }
+
+  status(status: string | null | undefined): string {
+    return getTaskStatus(status);
   }
 }

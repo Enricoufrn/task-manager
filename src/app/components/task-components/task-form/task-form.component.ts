@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { TaskModel } from 'src/app/domain/TaskModel';
+import { TaskStatusEnum } from 'src/app/domain/TaskStatusEnum';
 import { TaskService } from 'src/app/services/task.service';
 
 @Component({
@@ -25,6 +26,15 @@ export class TaskFormComponent {
     updatedAt: new FormControl('')
   });
 
+  isUpdate = false;
+
+  statusList = [
+    { value: "TODO", description: TaskStatusEnum.TODO },
+    { value: "DOING", description: TaskStatusEnum.DOING },
+    { value: "DONE", description: TaskStatusEnum.DONE },
+    { value: "ARCHIVED", description: TaskStatusEnum.ARCHIVED },
+  ];
+
   ngOnInit(): void {
     console.debug('TaskFormComponent -> ngOnInit called');
     const taskId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -41,6 +51,7 @@ export class TaskFormComponent {
         this.taskForm.get('status')?.setValue(status);
         this.taskForm.get('createdAt')?.setValue(createdAt.toString());
         this.taskForm.get('updatedAt')?.setValue(updatedAt.toString());
+        this.isUpdate = true;
       });
     }
   }

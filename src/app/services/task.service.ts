@@ -3,6 +3,7 @@ import { ApiRoutesService } from './api-routes.service';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { TaskModel } from '../domain/TaskModel';
 import { Observable, map, of } from 'rxjs';
+import { ChangeTaskStatusRequest } from '../domain/ChangeTaskStatusRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -59,9 +60,9 @@ export class TaskService {
         return this.httpClient.put<TaskModel>(newTaskUrl, task, { observe: 'response' })
           .pipe(
             map((response: HttpResponse<TaskModel>) => {
-              if (response.status === 201) {
+              if (response.status === 200) {
                 const task = response.body || null;
-                console.debug('TaskService -> newTask: task: ', task);
+                console.debug('TaskService -> updated task: ', task);
                 return task;
               } else {
                 return null;
@@ -73,13 +74,32 @@ export class TaskService {
             map((response: HttpResponse<TaskModel>) => {
               if (response.status === 201) {
                 const task = response.body || null;
-                console.debug('TaskService -> newTask: task: ', task);
+                console.debug('TaskService -> newTask: ', task);
                 return task;
               } else {
                 return null;
               }
             }));
       }
+    } else return of(null);
+  }
+
+  changeTaskStatus(taskId: string, newStatus: string): Observable<TaskModel | null> {
+    const request = new ChangeTaskStatusRequest(taskId, newStatus);
+    const config = this.apiRoutesService.getConfig();
+    if (config != null) {
+      const newTaskUrl = `${config?.protocol}://${config?.host}${config?.baseUrl}${config?.tasksRoute}/${config?.updateTaskStatusRoute}`;
+      return this.httpClient.post<TaskModel>(newTaskUrl, request, { observe: 'response' })
+        .pipe(
+          map((response: HttpResponse<TaskModel>) => {
+            if (response.status === 200) {
+              const task = response.body || null;
+              console.debug('TaskService -> changeTaskStatus: ', task);
+              return task;
+            } else {
+              return null;
+            }
+          }));
     } else return of(null);
   }
 }
