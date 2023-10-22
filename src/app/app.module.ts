@@ -15,6 +15,7 @@ import { TaskDetailsComponent } from './components/task-components/task-details/
 import { httpInterceptorProviders } from './config/injection-config';
 import { TasksManagerComponent } from './components/task-components/tasks-manager/tasks-manager.component';
 import { AuthGuard } from './config/auth-guard';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AuthGuard } from './config/auth-guard';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     httpInterceptorProviders,
