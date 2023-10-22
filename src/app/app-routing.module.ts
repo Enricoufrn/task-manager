@@ -11,7 +11,7 @@ import { TasksManagerComponent } from './components/task-components/tasks-manage
 import { canActivateTeam } from './config/auth-guard';
 
 const routes: Routes = [
-  { path: 'login', title: 'Login', component: LoginComponent },
+  { path: 'login', title: 'Bem Vindo!', component: LoginComponent },
   {
     path: 'home',
     title: 'Home',

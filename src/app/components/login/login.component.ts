@@ -15,6 +15,9 @@ export class LoginComponent {
     private authService: AuthenticationService,
     private router: Router) { }
 
+  asError: boolean = false;
+  errorMessage: string = 'Login ou senha inválido(s)';
+
   loginForm = this.formBuilder.group({
     login: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
@@ -29,6 +32,7 @@ export class LoginComponent {
       if (result) {
         this.router.navigate(['home']);
       } else {
+        this.asError = true;
         console.debug('Login failed!');
       }
     });

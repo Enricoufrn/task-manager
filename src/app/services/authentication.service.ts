@@ -1,9 +1,9 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserModel } from '../domain/UserModel';
 import { ApiRoutesService } from './api-routes.service';
 import { LoginRequestDTO } from '../domain/LoginRequestDTO';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { UserDetailsService } from './user-details.service';
 import { AuthConfigService } from './auth-config.service';
 
@@ -41,6 +41,10 @@ export class AuthenticationService {
           } else {
             return false;
           }
+        }),
+        catchError((error: HttpErrorResponse) => {
+          console.debug('Login error:', error);
+          return of(false);
         })
       );
   }
