@@ -1,27 +1,44 @@
-<div>
-    <a routerLink="../form" routerLinkActive="active">Nova Tarefa</a>
-    <table>
-        <thead>
-            <tr>
-                <th>Data de criação</th>
-                <th>Última alteração</th>
-                <th>Título</th>
-                <th>Status</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let task of tasks">
-                <td>{{ task.createdAt | date:"dd/MM/yyyy" }}</td>
-                <td>{{ task.updatedAt | date:"dd/MM/yyyy" }} </td>
-                <td>{{task.title}}</td>
-                <td>{{status(task.status)}}</td>
-                <td>
-                    <button (click)="viewTask(task.id)">view</button>
-                    <button (click)="editTask(task.id)">Edit</button>
-                    <button (click)="deleteTask(task)">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div class="row">
+    <div class="col-12 d-flex flex-column align-items-end">
+        <a class="new-task-link" routerLink="../form" routerLinkActive="active">Nova Tarefa</a>
+    </div>
+    <div class="col-12 mt-3">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Data de criação</th>
+                            <th>Última alteração</th>
+                            <th>Título</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let task of tasks">
+                            <td>{{ task.createdAt | date:"dd/MM/yyyy" }}</td>
+                            <td>{{ task.updatedAt | date:"dd/MM/yyyy" }} </td>
+                            <td>{{task.title}}</td>
+                            <td>{{status(task.status)}}</td>
+                            <td>
+                                <button class="action-buttons me-2" placement="top" ngbTooltip="Visualizar"
+                                    (click)="viewTask(task.id)">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                                <button class="action-buttons me-2" placement="top" ngbTooltip="Editar"
+                                    (click)="editTask(task.id)">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                                <button class="action-buttons" placement="top" ngbTooltip="Deletar"
+                                    (click)="deleteTask(task)">
+                                    <i class="bi bi-trash3"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

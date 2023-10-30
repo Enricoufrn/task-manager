@@ -1,0 +1,15 @@
+.new-task-link {
+    color: #712cf9;
+    text-decoration: none;
+    border: 2px solid #712cf9;
+    border-radius: 4px;
+    padding: 5px 10px 5px 10px;
+}
+
+.task-list-table {}
+
+.action-buttons {
+    color: #712cf9;
+    border: 2px solid #712cf9;
+    border-radius: 4px;
+}

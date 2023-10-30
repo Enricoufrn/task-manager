@@ -9,3 +9,7 @@ body {
 .btn-primary-custom {
     padding: 10px 25px 10px 25px;
 }
+
+.content {
+    padding: 15px;
+}
