@@ -6,7 +6,27 @@ body {
 }
 
 .btn-primary-custom {
-    padding: 10px 25px 10px 25px;
+    padding: 8px 25px 8px 25px;
+    background-color: #712cf9;
+    border-color: #712cf9;
+}
+
+.btn-primary-custom:hover {
+    color: white;
+    background-color: #671ef8 !important;
+    border-color: #671ef8 !important;
+}
+
+.btn-primary-custom:focus {
+    color: white;
+    background-color: #671ef8 !important;
+    border-color: #671ef8 !important;
+}
+
+.btn-primary-custom:active {
+    color: white;
+    background-color: #671ef8 !important;
+    border-color: #671ef8 !important;
 }
 
 .content {

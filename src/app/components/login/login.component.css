@@ -5,3 +5,7 @@ body {
 .form-container {
     height: 100vh;
 }
+
+.login-btn {
+    padding: 10px 25px 10px 25px;
+}

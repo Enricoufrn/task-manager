@@ -57,6 +57,7 @@ export class TaskFormComponent {
   }
 
   onSubmit() {
+    console.debug('TaskFormComponent -> onSubmit called');
     if (this.taskForm.valid) {
       const createdAtValue = this.taskForm.get('createdAt')?.value;
       const updatedAtValue = this.taskForm.get('updatedAt')?.value;

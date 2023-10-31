@@ -1,0 +1,11 @@
+.description-text-area {
+    min-height: 150px;
+}
+
+.ng-invalid {
+    border-color: #ea868fed;
+}
+
+.ng-untouched {
+    border-color: #ced4da;
+}
