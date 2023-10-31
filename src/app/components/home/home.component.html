@@ -2,6 +2,12 @@
     
 </div> -->
 <div class="header">
+    <div class="app-name-container">
+        <h2 class="text-center">
+            <i class="bi bi-gear"></i>
+            Gerenciador de Tarefas
+        </h2>
+    </div>
     <div class="btn-logout-container">
         <button type="button" class="btn ms-2 logout-btn" (click)="logout()">
             <i class="bi bi-box-arrow-right logout-icon"></i>
@@ -9,17 +15,15 @@
         </button>
     </div>
 </div>
-<div class="custom-container">
-    <div class="menu d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item"><a class="nav-link text-white" routerLink="my-account" routerLinkActive="active"
-                    ariaCurrentWhenActive="page">Meu dados</a></li>
-            <li class="nav-item"><a class="nav-link text-white" routerLink="tasks" routerLinkActive="active"
-                    ariaCurrentWhenActive="page">Minhas Tarefas</a></li>
-        </ul>
-    </div>
-    <div class="content">
-        <router-outlet></router-outlet>
-    </div>
+<div class="menu d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item"><a class="nav-link text-white" routerLink="my-account" routerLinkActive="active"
+                ariaCurrentWhenActive="page">Meu dados</a></li>
+        <li class="nav-item"><a class="nav-link text-white" routerLink="tasks" routerLinkActive="active"
+                ariaCurrentWhenActive="page">Minhas Tarefas</a></li>
+    </ul>
+</div>
+<div class="content">
+    <router-outlet></router-outlet>
 </div>
