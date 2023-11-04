@@ -5,7 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { TaskModel } from 'src/app/domain/TaskModel';
 import { TaskStatusEnum } from 'src/app/domain/TaskStatusEnum';
 import { TaskService } from 'src/app/services/task.service';
-import { formatDateTime, getDateFromString, getTaskStatus } from 'src/app/utils/task-utils';
+import { formatDateTime, getDateFromString } from 'src/app/utils/date-utils';
+import { getTaskStatus } from 'src/app/utils/task-utils';
 
 @Component({
   selector: 'app-task-form',
