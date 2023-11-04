@@ -4,6 +4,8 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { TaskModel } from '../domain/TaskModel';
 import { Observable, map, of } from 'rxjs';
 import { ChangeTaskStatusRequest } from '../domain/ChangeTaskStatusRequest';
+import { formatDate } from '@angular/common';
+import { getTaskStatus, getTaskStatusName } from '../utils/task-utils';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +58,9 @@ export class TaskService {
     const config = this.apiRoutesService.getConfig();
     if (config != null) {
       const newTaskUrl = `${config?.protocol}://${config?.host}${config?.baseUrl}${config?.tasksRoute}`;
+      task.createdAt = task.createdAt ? formatDate(task.createdAt, 'yyyy-MM-dd HH:mm:ss', 'pt-BR') : null;
+      task.updatedAt = task.updatedAt ? formatDate(task.updatedAt, 'yyyy-MM-dd HH:mm:ss', 'pt-BR') : null;
+      task.status = getTaskStatusName(task.status);
       if (isUpdate) {
         return this.httpClient.put<TaskModel>(newTaskUrl, task, { observe: 'response' })
           .pipe(

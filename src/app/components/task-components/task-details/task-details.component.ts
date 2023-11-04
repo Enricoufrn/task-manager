@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TaskModel } from 'src/app/domain/TaskModel';
 import { TaskService } from 'src/app/services/task.service';
+import { getTaskStatus } from 'src/app/utils/task-utils';
 
 @Component({
   selector: 'app-task-details',
@@ -20,6 +21,9 @@ export class TaskDetailsComponent {
     const taskId = this.activatedRoute.snapshot.paramMap.get('id');
     if (taskId) {
       this.taskService.getTask(taskId).subscribe((task: TaskModel | null) => {
+        if (task != null) {
+          task.status = getTaskStatus(task.status);
+        }
         this.task = task;
       });
     }
@@ -30,6 +34,9 @@ export class TaskDetailsComponent {
     if (taskId != null && taskId != undefined) {
       this.taskService.changeTaskStatus(taskId, "ARCHIVED").subscribe((task: TaskModel | null) => {
         alert('Tarefa arquivada com sucesso!');
+        if (task != null) {
+          task.status = getTaskStatus(task.status);
+        }
         this.task = task;
       });
     }

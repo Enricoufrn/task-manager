@@ -16,6 +16,10 @@ import { httpInterceptorProviders } from './config/injection-config';
 import { TasksManagerComponent } from './components/task-components/tasks-manager/tasks-manager.component';
 import { AuthGuard } from './config/auth-guard';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { registerLocaleData } from '@angular/common';
+import localePT from '@angular/common/locales/pt';
+
+registerLocaleData(localePT);
 
 @NgModule({
   declarations: [

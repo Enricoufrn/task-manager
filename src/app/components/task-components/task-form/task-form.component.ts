@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TaskModel } from 'src/app/domain/TaskModel';
 import { TaskStatusEnum } from 'src/app/domain/TaskStatusEnum';
 import { TaskService } from 'src/app/services/task.service';
+import { formatDateTime, getDateFromString, getTaskStatus } from 'src/app/utils/task-utils';
 
 @Component({
   selector: 'app-task-form',
@@ -27,6 +28,7 @@ export class TaskFormComponent {
   });
 
   isUpdate = false;
+  submitBtnText: string = '';
 
   statusList = [
     { value: "TODO", description: TaskStatusEnum.TODO },
@@ -52,8 +54,10 @@ export class TaskFormComponent {
         this.taskForm.get('createdAt')?.setValue(createdAt.toString());
         this.taskForm.get('updatedAt')?.setValue(updatedAt.toString());
         this.isUpdate = true;
+        console.debug('TaskFormComponent -> ngOnInit: btnText: ', this.submitBtnText);
       });
     }
+    this.submitBtnText = this.isUpdate ? 'Salvar alterações' : 'Cadastrar';
   }
 
   onSubmit() {
@@ -63,16 +67,16 @@ export class TaskFormComponent {
       const updatedAtValue = this.taskForm.get('updatedAt')?.value;
 
       const isUpdate = this.taskForm.get('id')?.value ? true : false;
+      const status = getTaskStatus(this.taskForm.get('status')?.value);
 
-      const newTask = {
-        id: this.taskForm.get('id')?.value,
-        title: this.taskForm.get('title')?.value,
-        description: this.taskForm.get('description')?.value,
-        status: this.taskForm.get('status')?.value,
-        owner: null,
-        createdAt: createdAtValue,
-        updatedAt: updatedAtValue
-      };
+      const newTask = new TaskModel(this.taskForm.get('id')?.value,
+        this.taskForm.get('title')?.value,
+        this.taskForm.get('description')?.value,
+        status,
+        null,
+        getDateFromString(createdAtValue),
+        getDateFromString(updatedAtValue));
+
       this.taskService.save(newTask, isUpdate)
         .subscribe((task: TaskModel | null) => {
           const message = isUpdate ? 'Tarefa atualizada com sucesso!' : 'Tarefa criada com sucesso!';
@@ -81,19 +85,7 @@ export class TaskFormComponent {
     }
   }
 
-  formatDateTime(date: string | null | undefined): string {
-    if (!date) {
-      return '';
-    }
-
-    const formattedDate = new Date(date);
-    return formattedDate.toLocaleString('pt-BR', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-    });
+  formatDate(date: string | null | undefined): string {
+    return formatDateTime(date);
   }
 }

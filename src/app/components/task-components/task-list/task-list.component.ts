@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskModel } from 'src/app/domain/TaskModel';
+import { TaskStatusEnum } from 'src/app/domain/TaskStatusEnum';
 import { TaskService } from 'src/app/services/task.service';
 import { getTaskStatus } from 'src/app/utils/task-utils';
 
@@ -44,7 +45,7 @@ export class TaskListComponent {
     }
   }
 
-  status(status: string | null | undefined): string {
+  status(status: string | null | undefined): TaskStatusEnum | null {
     return getTaskStatus(status);
   }
 }
