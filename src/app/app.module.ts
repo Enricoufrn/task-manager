@@ -21,6 +21,7 @@ import localePT from '@angular/common/locales/pt';
 import { TaskBoardComponent } from './components/task-components/task-board/task-board.component';
 import { TaskBoardCardComponent } from './components/task-components/task-board-card/task-board-card.component';
 import { TaskBoardCardItemComponent } from './components/task-components/task-board-card-item/task-board-card-item.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 registerLocaleData(localePT);
 
@@ -44,6 +45,7 @@ registerLocaleData(localePT);
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    DragDropModule,
     NgbModule
   ],
   providers: [

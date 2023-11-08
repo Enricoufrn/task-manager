@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { ApiRoutesService } from './api-routes.service';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { TaskModel } from '../domain/TaskModel';
@@ -13,6 +13,9 @@ import { TasksGroupedDTO } from '../domain/TasksGroupedDTO';
   providedIn: 'root'
 })
 export class TaskService {
+
+  taskMap: EventEmitter<Map<TaskStatusEnum, TaskModel[]>> = new EventEmitter();
+  lastTaskMap?: Map<TaskStatusEnum, TaskModel[]>;
 
   constructor(
     private apiRoutesService: ApiRoutesService,
@@ -129,6 +132,8 @@ export class TaskService {
                   }
                 }
               });
+              this.lastTaskMap = tasksMap;
+              this.taskMap?.emit(tasksMap);
               return tasksMap;
             } else {
               return null;

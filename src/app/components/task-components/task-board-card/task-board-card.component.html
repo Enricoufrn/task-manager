@@ -1,4 +1,4 @@
-<div class="card board-card">
+<div class="card board-card" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="status">
     <div class="card-header">
         <h3>{{status}}</h3>
     </div>
