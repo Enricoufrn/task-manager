@@ -6,6 +6,8 @@ import { Observable, map, of } from 'rxjs';
 import { ChangeTaskStatusRequest } from '../domain/ChangeTaskStatusRequest';
 import { formatDate } from '@angular/common';
 import { getTaskStatus, getTaskStatusName } from '../utils/task-utils';
+import { TaskStatusEnum } from '../domain/TaskStatusEnum';
+import { TasksGroupedDTO } from '../domain/TasksGroupedDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -106,5 +108,34 @@ export class TaskService {
             }
           }));
     } else return of(null);
+  }
+
+  getTasksGroupByStatus(): Observable<Map<TaskStatusEnum, TaskModel[]> | null> {
+    const config = this.apiRoutesService.getConfig();
+    if (config != null) {
+      const tasksGroupedUrl = `${config.protocol}://${config.host}${config.baseUrl}${config.tasksRoute}/${config.getTasksGroupedByStatusRoute}`;
+      return this.httpClient.get<TasksGroupedDTO[]>(tasksGroupedUrl, { observe: 'response' })
+        .pipe(
+          map((response: HttpResponse<TasksGroupedDTO[]>) => {
+            if (response.status == 200) {
+              const tasksGrouped = response.body || [];
+              console.debug('TaskService -> getTasksGroupByStatus: tasksGrouped: ', tasksGrouped);
+              const tasksMap = new Map<TaskStatusEnum, TaskModel[]>();
+              tasksGrouped.forEach((tasksGrouped: TasksGroupedDTO) => {
+                if (tasksGrouped.status && tasksGrouped.tasks) {
+                  const status = getTaskStatus(tasksGrouped.status);
+                  if (status != null) {
+                    tasksMap.set(status, tasksGrouped.tasks);
+                  }
+                }
+              });
+              return tasksMap;
+            } else {
+              return null;
+            }
+          })
+        )
+    }
+    return of(null);
   }
 }

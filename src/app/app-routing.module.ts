@@ -9,6 +9,7 @@ import { TaskFormComponent } from './components/task-components/task-form/task-f
 import { TaskDetailsComponent } from './components/task-components/task-details/task-details.component';
 import { TasksManagerComponent } from './components/task-components/tasks-manager/tasks-manager.component';
 import { canActivateTeam } from './config/auth-guard';
+import { TaskBoardComponent } from './components/task-components/task-board/task-board.component';
 
 const routes: Routes = [
   { path: 'login', title: 'Bem Vindo!', component: LoginComponent },
@@ -30,6 +31,12 @@ const routes: Routes = [
           { path: 'view/:id', title: 'Tarefa - Detalhes', component: TaskDetailsComponent },
           { path: '', redirectTo: 'list', pathMatch: 'full' },
         ]
+      },
+      {
+        path: 'board',
+        title: 'Board',
+        component: TaskBoardComponent,
+        canActivate: [canActivateTeam],
       },
       { path: '', redirectTo: 'tasks', pathMatch: 'full' },
     ]

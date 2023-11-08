@@ -1,0 +1,10 @@
+<div class="card board-card">
+    <div class="card-header">
+        <h3>{{status}}</h3>
+    </div>
+    <div class="card-body">
+        <ng-container *ngFor="let task of tasks">
+            <app-task-board-card-item [task]="task"></app-task-board-card-item>
+        </ng-container>
+    </div>
+</div>

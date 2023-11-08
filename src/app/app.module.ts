@@ -18,6 +18,9 @@ import { AuthGuard } from './config/auth-guard';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { registerLocaleData } from '@angular/common';
 import localePT from '@angular/common/locales/pt';
+import { TaskBoardComponent } from './components/task-components/task-board/task-board.component';
+import { TaskBoardCardComponent } from './components/task-components/task-board-card/task-board-card.component';
+import { TaskBoardCardItemComponent } from './components/task-components/task-board-card-item/task-board-card-item.component';
 
 registerLocaleData(localePT);
 
@@ -31,7 +34,10 @@ registerLocaleData(localePT);
     TaskListComponent,
     TaskFormComponent,
     TaskDetailsComponent,
-    TasksManagerComponent
+    TasksManagerComponent,
+    TaskBoardComponent,
+    TaskBoardCardComponent,
+    TaskBoardCardItemComponent
   ],
   imports: [
     BrowserModule,

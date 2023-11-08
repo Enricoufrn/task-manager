@@ -1,0 +1,13 @@
+<div class="card">
+    <div class="card-body">
+        <div class="cards-container">
+            <div class="cards-list">
+                <ng-container *ngIf="taskMap != undefined">
+                    <app-task-board-card *ngFor="let status of statusList" [status]="status"
+                        [tasks]="taskMap.get(status)">
+                    </app-task-board-card>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

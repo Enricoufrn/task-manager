@@ -10,6 +10,7 @@ export interface Config {
   authRoute: string,
   tasksRoute: string,
   updateTaskStatusRoute: string,
+  getTasksGroupedByStatusRoute: string,
 }
 
 @Injectable({

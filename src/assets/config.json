@@ -6,5 +6,6 @@
     "userRoute": "user",
     "authRoute": "auth/login",
     "tasksRoute": "task",
-    "updateTaskStatusRoute": "update-status"
+    "updateTaskStatusRoute": "update-status",
+    "getTasksGroupedByStatusRoute": "get-tasks-grouped-by-status"
 }
