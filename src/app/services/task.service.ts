@@ -105,6 +105,7 @@ export class TaskService {
             if (response.status === 200) {
               const task = response.body || null;
               console.debug('TaskService -> changeTaskStatus: ', task);
+              this.getTasksGroupByStatus().subscribe((tasksMap: Map<TaskStatusEnum, TaskModel[]> | null) => { });
               return task;
             } else {
               return null;

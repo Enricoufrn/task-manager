@@ -20,11 +20,11 @@ export class TaskBoardCardComponent {
   ngOnInit() {
     console.debug('TaskBoardCardComponent -> ngOnInit: status: ', this.status);
     if (this.taskService.taskMap != null && this.status != null) {
-      this.taskService.taskMap.pipe(
-        map((map: Map<TaskStatusEnum, TaskModel[]>) => {
+      this.taskService.taskMap.subscribe(
+        (map: Map<TaskStatusEnum, TaskModel[]>) => {
           console.debug('TaskBoardCardComponent -> task map changed: map: ', map);
           this.tasks = map.get(this.status as TaskStatusEnum) || [];
-        })
+        }
       )
       this.tasks = this.taskService.lastTaskMap?.get(this.status as TaskStatusEnum) || [];
     }
@@ -36,12 +36,16 @@ export class TaskBoardCardComponent {
     console.debug('previousList: ', previousList);
     var currentList = event.container.data as TaskStatusEnum;
     console.debug('currentList: ', currentList);
-    if (currentList != previousList && currentList != null && this.taskService.taskMap != null) {
+    if (currentList != previousList && currentList != null) {
       const taskId = event.item.data as string;
       const newStatus = getTaskStatusName(currentList);
       console.debug('taskId: ', taskId);
       console.debug('newStatus: ', newStatus);
-      // todo: change task status
+      if (newStatus != null) {
+        this.taskService.changeTaskStatus(taskId, newStatus).subscribe((task: TaskModel | null) => {
+
+        });
+      }
     }
   }
 }
